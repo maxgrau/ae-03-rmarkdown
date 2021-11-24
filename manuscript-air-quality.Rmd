@@ -25,6 +25,7 @@ library(readr)
 library(dplyr)
 library(DT)
 library(lubridate)
+library(ggplot2)
 
 ```
 
@@ -67,4 +68,19 @@ dat_in_sum_day %>%
 
 - Can you also reproduce the plot that we created in unit 2 of application exercise 2?
 
+```{r}
+
+ggplot(data = dat_in_sum_day,
+       mapping = aes(x = date, 
+                     y = mean, 
+                     color = indicator)) +
+  geom_point(size = 1.0) +
+  geom_line() +
+  labs(title = "Hospital Air Quality",
+       subtitle = "Mean 24-hour PM2.5 and PM10 concentrations at eight locations") +
+  ylab(bquote(uq/m^3)) +
+  facet_wrap(~location) +
+  theme_bw(base_size = 10) 
+
+```
 
